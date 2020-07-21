@@ -1,7 +1,6 @@
 #include "paciente.h"
 #include <stdio.h>
 #include <time.h>
-#define ANIO_ACTUAL 2020
 
 struct paciente{
     char* nombre;
@@ -22,7 +21,8 @@ paciente_t* paciente_crear(char* nombre, void* antiguedad){
     paciente_t* paciente = malloc(sizeof(paciente_t));
     if(!paciente) return NULL;
     paciente->nombre = nombre;
-    paciente->antiguedad = ANIO_ACTUAL - (size_t) antiguedad;
+    int anio_actual = calcular_anio_actual();
+    paciente->antiguedad = (size_t) anio_actual - (size_t) antiguedad;
     return paciente;
 }
 
