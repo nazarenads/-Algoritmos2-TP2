@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdbool.h>
-# include "paciente.h"
+#include "paciente.h"
 
 
 /* ******************************************************************
