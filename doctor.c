@@ -23,6 +23,10 @@ char* doctor_ver_especialidad(doctor_t* doctor){
     return doctor->especialidad;
 }
 
+char* doctor_ver_nombre(doctor_t* doctor){
+    return doctor->nombre;
+}
+
 size_t doctor_cant_atendidos(doctor_t* doctor){
     return doctor->cant_atendidos;
 }

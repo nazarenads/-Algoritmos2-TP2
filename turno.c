@@ -1,7 +1,6 @@
 #include "heap.h"
 #include "cola.h"
 #include "turno.h"
-#include "paciente.h"
 #include <string.h>
 
 // Definicion de la estructura
