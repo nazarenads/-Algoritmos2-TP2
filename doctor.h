@@ -17,6 +17,9 @@ doctor_t* doctor_crear(char* nombre, char* especialidad);
 // Devuelve la especialidad del doctor
 char* doctor_ver_especialidad(doctor_t* doctor);
 
+// Devuelve el nombre del doctor
+char* doctor_ver_nombre(doctor_t* doctor);
+
 // Devuelve la cantidad de pacientes que atendio el doctor
 size_t doctor_cant_atendidos(doctor_t* doctor);
 
