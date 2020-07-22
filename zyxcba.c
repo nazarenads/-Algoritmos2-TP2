@@ -1,6 +1,7 @@
+#define  _POSIX_C_SOURCE 200809L
+#include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include "funciones_tp2.h"
 #include "strutil.h"
 #include "mensajes.h"
 
@@ -8,7 +9,7 @@
 #define COMANDO_ATENDER "ATENDER_SIGUIENTE"
 #define COMANDO_INFORME "INFORME"
 
-void procesar_comando(const char* comando, const char** parametros) {
+void procesar_comando(char* comando, char** parametros) {
 	if (strcmp(comando, COMANDO_PEDIR_TURNO) == 0) {
 
 	} else if (strcmp(comando, COMANDO_ATENDER) == 0) {

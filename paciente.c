@@ -11,18 +11,18 @@ int calcular_anio_actual(){
     time_t rawtime;
     struct tm * timeinfo;
 
-    time ( &rawtime );
-    timeinfo = localtime ( &rawtime );
+    time(&rawtime);
+    timeinfo = localtime(&rawtime);
 
     return timeinfo->tm_year + 1900;
 }
 
-paciente_t* paciente_crear(char* nombre, void* antiguedad){
+paciente_t* paciente_crear(char* nombre, void* anio_inscripcion){
     paciente_t* paciente = malloc(sizeof(paciente_t));
     if(!paciente) return NULL;
     paciente->nombre = nombre;
     int anio_actual = calcular_anio_actual();
-    paciente->antiguedad = (size_t) anio_actual - (size_t) antiguedad;
+    paciente->antiguedad = (size_t) anio_actual - (size_t) anio_inscripcion;
     return paciente;
 }
 
@@ -30,7 +30,7 @@ char* paciente_nombre(paciente_t* paciente){
     return paciente->nombre;
 }
 
-char* paciente_antiguedad(paciente_t* paciente){
+size_t paciente_antiguedad(paciente_t* paciente){
     return paciente->antiguedad;
 }
 

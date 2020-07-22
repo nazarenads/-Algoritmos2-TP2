@@ -16,6 +16,7 @@ doctor_t* doctor_crear(char* nombre, char* especialidad){
     doctor->nombre = nombre;
     doctor->especialidad = especialidad;
     doctor->cant_atendidos = 0;
+    return doctor;
 }
 
 char* doctor_ver_especialidad(doctor_t* doctor){

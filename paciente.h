@@ -19,7 +19,7 @@ paciente_t* paciente_crear(char* nombre, void* antiguedad);
 char* paciente_nombre(paciente_t* paciente);
 
 // Devuelve la antiguedad del paciente
-char* paciente_antiguedad(paciente_t* paciente);
+size_t paciente_antiguedad(paciente_t* paciente);
 
 // Destruye el paciente
 void paciente_destruir(paciente_t* paciente);
