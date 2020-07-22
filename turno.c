@@ -23,10 +23,6 @@ int cmp_antiguedad_paciente(const void* a, const void* b){
     return _cmp_antiguedad_paciente((paciente_t*) a, (paciente_t*) b);
 }
 
-void destruir_dato(void* dato){
-    paciente_destruir(dato);
-}
-
 // Primitivas
 
 turno_t* turno_crear(){
@@ -67,20 +63,21 @@ bool encolar_turno_reg(turno_t* turno, paciente_t* paciente){
     return heap_encolar(turno->regular, paciente);
 }
 
-bool desencolar_turno_reg(turno_t* turno){
+paciente_t* desencolar_turno_reg(turno_t* turno){
     return heap_desencolar(turno->regular);
 }
 
-bool desencolar_turno_urg(turno_t* turno){
-    if(cola_desencolar(turno->urgente)){
-        turno->cant_espera_urg--;
-        return true;
-    }
-    return false;
+paciente_t* desencolar_turno_urg(turno_t* turno){
+    paciente_t* paciente = cola_desencolar(turno->urgente);
+    if(!paciente) return NULL;
+    turno->cant_espera_urg--;
+    return paciente;
 }
 
 void turno_destruir(turno_t* turno){
-    cola_destruir(turno->urgente, destruir_dato);
-    heap_destruir(turno->regular, destruir_dato);
+    // No les paso funcion de destruccion porque asumo que solo vamos a destruir
+    // esta estructura cuando esten vacias ambas colas.
+    cola_destruir(turno->urgente, NULL);
+    heap_destruir(turno->regular, NULL);
     free(turno);
 }
