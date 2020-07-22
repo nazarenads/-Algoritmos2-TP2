@@ -12,7 +12,7 @@
 } nodo_t;
 
 
-nodo_t* crear_nodo(void* valor) { 
+nodo_t* crear_nodo_lista(void* valor) { 
 	nodo_t* nodo = malloc(sizeof(nodo_t)); 
 	if (!nodo) { 
 		return NULL; 
@@ -57,7 +57,7 @@ bool lista_esta_vacia(const lista_t* lista){
 }
 
 bool lista_insertar_primero(lista_t* lista, void* dato){
-	nodo_t* nodo = crear_nodo(dato);
+	nodo_t* nodo = crear_nodo_lista(dato);
 	if(!nodo){
 		return false;
 	}
@@ -72,7 +72,7 @@ bool lista_insertar_primero(lista_t* lista, void* dato){
 }
 
 bool lista_insertar_ultimo(lista_t* lista, void* dato){
-	nodo_t* nodo = crear_nodo(dato);
+	nodo_t* nodo = crear_nodo_lista(dato);
 	if (!nodo)
 		return false;
 	if (lista_esta_vacia(lista)){
@@ -167,7 +167,7 @@ void lista_iter_destruir(lista_iter_t* iter){
 }
 
 bool lista_iter_insertar(lista_iter_t* iter, void* dato){
-	nodo_t* nuevo_nodo = crear_nodo(dato);
+	nodo_t* nuevo_nodo = crear_nodo_lista(dato);
 	if (!nuevo_nodo){
 		return false;
 	}

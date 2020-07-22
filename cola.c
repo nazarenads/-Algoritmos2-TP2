@@ -15,7 +15,7 @@ struct cola{
 
 //Funciones auxiliares
 
-nodo_t* crear_nodo(void* valor){
+nodo_t* crear_nodo_cola(void* valor){
     nodo_t* nodo = malloc(sizeof(nodo_t));
     if(nodo == NULL) return NULL;
     nodo->dato = valor;
@@ -54,7 +54,7 @@ void cola_destruir(cola_t *cola, void (*destruir_dato)(void*)){
 }
 
 bool cola_encolar(cola_t *cola, void* valor){
-    nodo_t* nodo = crear_nodo(valor);
+    nodo_t* nodo = crear_nodo_cola(valor);
     if(cola_esta_vacia(cola)){
         cola->primero = nodo;
         cola->ultimo = nodo;
