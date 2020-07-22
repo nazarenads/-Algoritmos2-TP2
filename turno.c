@@ -23,6 +23,10 @@ int cmp_antiguedad_paciente(const void* a, const void* b){
     return _cmp_antiguedad_paciente((paciente_t*) a, (paciente_t*) b);
 }
 
+void destruir_dato(void* dato){
+    paciente_destruir(dato);
+}
+
 // Primitivas
 
 turno_t* turno_crear(){
@@ -76,7 +80,7 @@ bool desencolar_turno_urg(turno_t* turno){
 }
 
 void turno_destruir(turno_t* turno){
-    cola_destruir(turno->urgente, paciente_destruir);
-    heap_destruir(turno->regular, paciente_destruir);
+    cola_destruir(turno->urgente, destruir_dato);
+    heap_destruir(turno->regular, destruir_dato);
     free(turno);
 }
