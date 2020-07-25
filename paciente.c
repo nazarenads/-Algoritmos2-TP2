@@ -64,6 +64,6 @@ hash_t* paciente_hash_crear(lista_t* lista_pacientes){
     return hash_pacientes;
 }
 
-bool paciente_pertenece_a_hash(paciente_t* paciente, hash_t* hash_pacientes){
-    return hash_pertenece(hash_pacientes, paciente->nombre);
+bool paciente_pertenece_a_hash(hash_t* hash_pacientes, char* nombre){
+    return hash_pertenece(hash_pacientes, nombre);
 }

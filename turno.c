@@ -92,18 +92,28 @@ bool guardar_turno_en_hash(hash_t* hash, doctor_t* doctor){
     return true;
 }
 
-
 hash_t* turno_hash_crear(lista_t* lista_doctores){
     hash_t* hash_turnos = hash_crear(turno_destruir);
     if (!hash_turnos) return NULL;
     lista_iter_t* iter = lista_iter_crear(lista_doctores);
     while (!lista_iter_al_final(iter)){
-        doctor_t* doctor = lista_iter_ver_actual(lista_doctores);
+        doctor_t* doctor = lista_iter_ver_actual(iter);
         bool guardado = guardar_turno_en_hash(hash_turnos, doctor);
         if (!guardado) return NULL;
         lista_iter_avanzar(iter);
     }
     lista_iter_destruir(iter);
-    lista_destruir(lista_doctores, free);
+    // no destruyo la lista de doctores porque se va a usar para el abb también
     return hash_turnos;
+}
+
+bool especialidad_pertenece_a_hash_turnos(hash_t* hash_turnos, char* especialidad){
+    return hash_pertenece(hash_turnos, especialidad);
+}
+
+bool pedir_turno(hash_t* hash_turnos, paciente_t* paciente, char* especialidad, bool (*encolar_turno)(turno_t* turno, paciente_t* paciente)){
+    turno_t* turnos_especialidad = (turno_t*)hash_obtener(hash_turnos, especialidad);
+    bool pedido = encolar_turno(turnos_especialidad, paciente);
+    if (!pedido) return false;
+    return true;
 }
