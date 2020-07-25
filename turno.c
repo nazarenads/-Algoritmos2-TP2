@@ -1,5 +1,8 @@
 #include "heap.h"
 #include "cola.h"
+#include "hash.h"
+#include "lista.h"
+#include "doctor.h"
 #include "turno.h"
 #include <string.h>
 
@@ -79,4 +82,28 @@ void turno_destruir(turno_t* turno){
     cola_destruir(turno->urgente, NULL);
     heap_destruir(turno->regular, NULL);
     free(turno);
+}
+
+bool guardar_turno_en_hash(hash_t* hash, doctor_t* doctor){
+    char* especialidad = doctor_ver_especialidad(doctor);
+    turno_t* turno = turno_crear();
+    bool guardado = hash_guardar(hash, especialidad, (void*)turno);
+    if (!guardado) return false;
+    return true;
+}
+
+
+hash_t* turno_hash_crear(lista_t* lista_doctores){
+    hash_t* hash_turnos = hash_crear(turno_destruir);
+    if (!hash_turnos) return NULL;
+    lista_iter_t* iter = lista_iter_crear(lista_doctores);
+    while (!lista_iter_al_final(iter)){
+        doctor_t* doctor = lista_iter_ver_actual(lista_doctores);
+        bool guardado = guardar_turno_en_hash(hash_turnos, doctor);
+        if (!guardado) return NULL;
+        lista_iter_avanzar(iter);
+    }
+    lista_iter_destruir(iter);
+    lista_destruir(lista_doctores, free);
+    return hash_turnos;
 }
