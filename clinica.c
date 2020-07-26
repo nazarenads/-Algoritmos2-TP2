@@ -28,9 +28,7 @@ void destruir_dato_paciente(void* dato){
 bool guardar_turno_en_hash(hash_t* hash, doctor_t* doctor){
     char* especialidad = doctor_ver_especialidad(doctor);
     turno_t* turno = turno_crear();
-    bool guardado = hash_guardar(hash, especialidad, (void*)turno);
-    if (!guardado) return false;
-    return true;
+    return hash_guardar(hash, especialidad, turno);
 }
 
 hash_t* turno_hash_crear(lista_t* lista_doctores){
@@ -50,9 +48,7 @@ hash_t* turno_hash_crear(lista_t* lista_doctores){
 
 bool guardar_doctor_en_abb(abb_t* abb_doctores, doctor_t* doctor){
     char* nombre_doctor = doctor_ver_nombre(doctor);
-    bool guardado = abb_guardar(abb_doctores, nombre_doctor, doctor);
-    if (!guardado) return false;
-    return true;
+    return abb_guardar(abb_doctores, nombre_doctor, doctor);
 }
 
 abb_t* doctor_abb_crear(lista_t* lista_doctores){
@@ -73,9 +69,7 @@ abb_t* doctor_abb_crear(lista_t* lista_doctores){
 bool guardar_paciente_en_hash(hash_t* hash, paciente_t* paciente){
     char* nombre = paciente_nombre(paciente);
     size_t antiguedad = paciente_antiguedad(paciente);
-    bool guardado = hash_guardar(hash, nombre, (void*)antiguedad);
-    if (!guardado) return false;
-    return true;
+    return hash_guardar(hash, nombre, &antiguedad);
 }
 
 
