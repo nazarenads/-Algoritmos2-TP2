@@ -133,6 +133,18 @@ clinica_t* clinica_crear(char* csv_pacientes, char* csv_doctores){
     return clinica;
 }
 
+hash_t* clinica_ver_pacientes(clinica_t* clinica){
+    return clinica->hash_pacientes;
+}
+
+hash_t* clinica_ver_turnos(clinica_t* clinica){
+    return clinica->hash_turnos;
+}
+
+abb_t* clinica_ver_doctores(clinica_t* clinica){
+    return clinica->abb_doctores;
+}
+
 void clinica_destruir(clinica_t* clinica){
     hash_destruir(clinica->hash_pacientes);
     hash_destruir(clinica->hash_turnos);
