@@ -4,6 +4,7 @@
 #include <string.h>
 #include "strutil.h"
 #include "mensajes.h"
+#include "clinica.h"
 
 #define COMANDO_PEDIR_TURNO "PEDIR_TURNO"
 #define COMANDO_ATENDER "ATENDER_SIGUIENTE"
@@ -50,5 +51,7 @@ void procesar_entrada() {
 
 
 int main(int argc, char** argv) {
+	clinica_t* clinica = clinica_crear(argv[1], argv[2]);
+	if (!clinica) return 1;
 	return 0;
 }

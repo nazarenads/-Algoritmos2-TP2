@@ -102,7 +102,7 @@ clinica_t* clinica_crear(char* csv_pacientes, char* csv_doctores){
     lista_t* lista_pacientes = csv_crear_estructura(csv_pacientes, crear_paciente_desde_csv, NULL);
     if (!lista_pacientes) {
         free(clinica);
-        return NULL
+        return NULL;
     }
     lista_t* lista_doctores =  csv_crear_estructura(csv_doctores, crear_doctor_desde_csv, NULL);
     if (!lista_doctores) {
