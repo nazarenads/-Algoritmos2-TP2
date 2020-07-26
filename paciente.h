@@ -23,3 +23,6 @@ size_t paciente_antiguedad(paciente_t* paciente);
 
 // Destruye el paciente
 void paciente_destruir(paciente_t* paciente);
+
+// Recibe el vector de campos del csv y crea un paciente_t usando esos campos
+void* crear_paciente_desde_csv(char** campos, void* extra);

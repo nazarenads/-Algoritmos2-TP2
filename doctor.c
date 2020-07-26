@@ -29,6 +29,10 @@ doctor_t* doctor_crear(char* nombre, char* especialidad){
     return doctor;
 }
 
+void* crear_doctor_desde_csv(char** campos, void* extra){
+    return doctor_crear(campos[0], campos[1]);
+}
+
 char* doctor_ver_especialidad(doctor_t* doctor){
     return doctor->especialidad;
 }

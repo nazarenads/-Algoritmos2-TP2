@@ -28,6 +28,10 @@ paciente_t* paciente_crear(char* nombre, void* anio_inscripcion){
     return paciente;
 }
 
+void* crear_paciente_desde_csv(char** campos, void* extra){
+    return paciente_crear(campos[0], campos[1]);
+}
+
 char* paciente_nombre(paciente_t* paciente){
     return paciente->nombre;
 }
