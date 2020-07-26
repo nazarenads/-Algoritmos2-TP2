@@ -12,6 +12,12 @@ struct doctor {
     size_t cant_atendidos;
 };
 
+/* Funciones auxiliares */
+
+void destruir_dato_doc(void* dato){
+    doctor_destruir(dato);
+}
+
 /* Primitivas */
 
 doctor_t* doctor_crear(char* nombre, char* especialidad){
@@ -38,6 +44,7 @@ size_t doctor_cant_atendidos(doctor_t* doctor){
 void doctor_destruir(doctor_t* doctor){
     free(doctor);
 }
+
 bool guardar_doctor_en_abb(abb_t* abb_doctores, doctor_t* doctor){
     char* nombre_doctor = doctor_ver_nombre(doctor);
     bool guardado = abb_guardar(abb_doctores, nombre_doctor, doctor);
@@ -46,7 +53,7 @@ bool guardar_doctor_en_abb(abb_t* abb_doctores, doctor_t* doctor){
 }
 
 abb_t* doctor_abb_crear(lista_t* lista_doctores){
-    abb_t* abb_doctores = abb_crear(strcmp, doctor_destruir);
+    abb_t* abb_doctores = abb_crear(strcmp, destruir_dato_doc);
     if (!abb_doctores) return NULL;
     lista_iter_t* iter = lista_iter_crear(lista_doctores);
     while (!lista_iter_al_final(iter)){
