@@ -1,5 +1,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
+#include "hash.h"
+#include "lista.h"
 #include "paciente.h"
 
 
