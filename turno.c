@@ -25,6 +25,10 @@ int cmp_antiguedad_paciente(const void* a, const void* b){
     return _cmp_antiguedad_paciente((paciente_t*) a, (paciente_t*) b);
 }
 
+void destruir_dato_turno(void* dato){
+    turno_destruir(dato);
+}
+
 // Primitivas
 
 turno_t* turno_crear(){
@@ -93,7 +97,7 @@ bool guardar_turno_en_hash(hash_t* hash, doctor_t* doctor){
 }
 
 hash_t* turno_hash_crear(lista_t* lista_doctores){
-    hash_t* hash_turnos = hash_crear(turno_destruir);
+    hash_t* hash_turnos = hash_crear(destruir_dato_turno);
     if (!hash_turnos) return NULL;
     lista_iter_t* iter = lista_iter_crear(lista_doctores);
     while (!lista_iter_al_final(iter)){
