@@ -74,6 +74,14 @@ paciente_t* desencolar_turno_urg(turno_t* turno){
     return paciente;
 }
 
+cola_t* ver_cola_turnos_urgentes(turno_t* turno){
+    return turno->urgente;
+}
+
+heap_t* ver_heap_turnos_regulares(turno_t* turno){
+    return turno->regular;
+}
+
 void turno_destruir(turno_t* turno){
     // No les paso funcion de destruccion porque asumo que solo vamos a destruir
     // esta estructura cuando esten vacias ambas colas.

@@ -2,6 +2,8 @@
 #include <stdbool.h>
 #include "hash.h"
 #include "lista.h"
+#include "heap.h"
+#include "cola.h"
 #include "paciente.h"
 
 
@@ -44,6 +46,12 @@ paciente_t* desencolar_turno_reg(turno_t* turno);
 // Pre: el turno fue creado.
 // Post: el paciente ya no se encuentra dentro del turno.
 paciente_t* desencolar_turno_urg(turno_t* turno);
+
+// Devuelve la cola de turnos urgentes 
+cola_t* ver_cola_turnos_urgentes(turno_t* turno);
+
+// Devuelve el heap de turnos regulares
+heap_t* ver_heap_turnos_regulares(turno_t* turno);
 
 // Destruye el turno
 void turno_destruir(turno_t* turno);
