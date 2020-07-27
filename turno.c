@@ -86,9 +86,3 @@ bool especialidad_pertenece_a_hash_turnos(hash_t* hash_turnos, char* especialida
     return hash_pertenece(hash_turnos, especialidad);
 }
 
-bool pedir_turno(hash_t* hash_turnos, paciente_t* paciente, char* especialidad, bool (*encolar_turno)(turno_t* turno, paciente_t* paciente)){
-    turno_t* turnos_especialidad = (turno_t*)hash_obtener(hash_turnos, especialidad);
-    bool pedido = encolar_turno(turnos_especialidad, paciente);
-    if (!pedido) return false;
-    return true;
-}

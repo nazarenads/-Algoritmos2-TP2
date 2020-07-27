@@ -4,15 +4,16 @@
 #include <string.h>
 #include "strutil.h"
 #include "mensajes.h"
+#include "comandos.h"
 #include "clinica.h"
 
 #define COMANDO_PEDIR_TURNO "PEDIR_TURNO"
 #define COMANDO_ATENDER "ATENDER_SIGUIENTE"
 #define COMANDO_INFORME "INFORME"
 
-void procesar_comando(char* comando, char** parametros) {
+void procesar_comando(char* comando, char** parametros, clinica_t* clinica) {
 	if (strcmp(comando, COMANDO_PEDIR_TURNO) == 0) {
-
+		pedir_turno(parametros, clinica);
 	} else if (strcmp(comando, COMANDO_ATENDER) == 0) {
 
 	} else if (strcmp(comando, COMANDO_INFORME) == 0) {
@@ -29,7 +30,7 @@ void eliminar_fin_linea(char* linea) {
 	}
 }
 
-void procesar_entrada() {
+void procesar_entrada(clinica_t* clinica) {
 	char* linea = NULL;
 	size_t c = 0;
 	while (getline(&linea, &c, stdin) > 0) {
@@ -41,7 +42,7 @@ void procesar_entrada() {
 			continue;	
 		}
 		char** parametros = split(campos[1], ',');
-		procesar_comando(campos[0], parametros);
+		procesar_comando(campos[0], parametros, clinica);
 		free_strv(parametros);
 		free_strv(campos);
 	}
@@ -54,6 +55,7 @@ int main(int argc, char** argv) {
 	if (argc != 3) printf(ENOENT_CANT_PARAMS);
 	clinica_t* clinica = clinica_crear(argv[1], argv[2]);
 	if (!clinica) return 1;
+	procesar_entrada(clinica);
 	clinica_destruir(clinica);
 	return 0;
 }
