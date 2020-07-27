@@ -39,6 +39,10 @@ size_t doctor_cant_atendidos(doctor_t* doctor){
     return doctor->cant_atendidos;
 }
 
+void doctor_aumentar_cant_atendidos(doctor_t* doctor){
+    doctor->cant_atendidos++;
+}
+
 void doctor_destruir(doctor_t* doctor){
     //free(doctor->nombre);
     //free(doctor->especialidad);

@@ -60,10 +60,6 @@ void pedir_turno(char** parametros, clinica_t* clinica){
 
 /* ATENDER SIGUIENTE */
 
-char* buscar_especialidad_doctor(char* nombre_doctor, abb_t* abb_doctores){
-    doctor_t* doctor = abb_obtener(abb_doctores, nombre_doctor);
-    return doctor_ver_especialidad(doctor);
-}
 
 void atender_siguiente(char* parametros, clinica_t* clinica){
     abb_t* abb_doctores = clinica_ver_doctores(clinica);
@@ -71,7 +67,8 @@ void atender_siguiente(char* parametros, clinica_t* clinica){
     if (!abb_pertenece(abb_doctores, parametros[0])){
         // Lanzar error ENOENT_DOCTOR
     }
-    char* especialidad = buscar_especialidad_doctor(parametros[0], abb_doctores);
+    doctor_t* doctor = abb_obtener(abb_doctores, parametros[0]);
+    char* especialidad = doctor_ver_especialidad(doctor);
     turno_t* turno = hash_obtener(hash_turnos, especialidad);
     cola_t* cola_urg = ver_cola_turnos_urgentes(turno);
     if (!cola_esta_vacia(cola_urg)){
@@ -81,6 +78,7 @@ void atender_siguiente(char* parametros, clinica_t* clinica){
         }
         // Imprimir salida de PACIENTE_ATENDIDO 
         // Imprimir CANT_PACIENTES_ENCOLADOS para la especialidad
+        doctor_aumentar_cant_atendidos(doctor);
         return;
     }
     heap_t* heap_reg =  ver_heap_turnos_regulares(turno);
@@ -90,6 +88,7 @@ void atender_siguiente(char* parametros, clinica_t* clinica){
         // Imprimir salida de PACIENTE_ATENDIDO 
         // Imprimir CANT_PACIENTES_ENCOLADOS para la especialidad
     }
+    doctor_aumentar_cant_atendidos(doctor);
 }
 
 
