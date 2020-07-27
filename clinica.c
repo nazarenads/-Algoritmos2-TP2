@@ -84,7 +84,6 @@ hash_t* paciente_hash_crear(lista_t* lista_pacientes){
         lista_iter_avanzar(iter);
     }
     lista_iter_destruir(iter);
-    lista_destruir(lista_pacientes, free);
     return hash_pacientes;
 }
 
@@ -128,8 +127,8 @@ clinica_t* clinica_crear(char* csv_pacientes, char* csv_doctores){
         abb_destruir(clinica->abb_doctores);
         return NULL;
     }
-    lista_destruir(lista_pacientes, destruir_dato_paciente);
-    lista_destruir(lista_doctores, destruir_dato_doc);
+    //lista_destruir(lista_pacientes, destruir_dato_paciente);
+    //lista_destruir(lista_doctores, destruir_dato_doc);
     return clinica;
 }
 

@@ -13,7 +13,7 @@ typedef struct paciente paciente_t;
  * *****************************************************************/
 
 // Crea un paciente
-paciente_t* paciente_crear(char* nombre, void* antiguedad);
+paciente_t* paciente_crear(char* nombre, int antiguedad);
 
 // Devuelve el nombre del paciente
 char* paciente_nombre(paciente_t* paciente);

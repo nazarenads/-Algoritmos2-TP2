@@ -51,7 +51,9 @@ void procesar_entrada() {
 
 
 int main(int argc, char** argv) {
+	if (argc != 3) printf(ENOENT_CANT_PARAMS);
 	clinica_t* clinica = clinica_crear(argv[1], argv[2]);
 	if (!clinica) return 1;
+	clinica_destruir(clinica);
 	return 0;
 }

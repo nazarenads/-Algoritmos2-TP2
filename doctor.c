@@ -1,3 +1,5 @@
+#define _POSIX_C_SOURCE 200809L
+#include <string.h>
 #include "doctor.h"
 #include "lista.h"
 
@@ -15,8 +17,8 @@ struct doctor {
 doctor_t* doctor_crear(char* nombre, char* especialidad){
     doctor_t* doctor = malloc(sizeof(doctor_t));
     if(!doctor) return NULL;
-    doctor->nombre = nombre;
-    doctor->especialidad = especialidad;
+    doctor->nombre = strdup(nombre);
+    doctor->especialidad = strdup(especialidad);
     doctor->cant_atendidos = 0;
     return doctor;
 }
@@ -38,5 +40,7 @@ size_t doctor_cant_atendidos(doctor_t* doctor){
 }
 
 void doctor_destruir(doctor_t* doctor){
+    //free(doctor->nombre);
+    //free(doctor->especialidad);
     free(doctor);
 }
