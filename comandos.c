@@ -92,4 +92,18 @@ void atender_siguiente(char** parametros, clinica_t* clinica){
     doctor_aumentar_cant_atendidos(doctor);
 }
 
+/* INFORME DOCTORES */
 
+void imprimir_doctor(doctor_t* doctor, size_t numero){
+    printf("%zu: %s, especialidad %s, %zu paciente(s) atendido(s)",
+     numero, doctor_ver_nombre(doctor), doctor_ver_especialidad(doctor), doctor_cant_atendidos(doctor));
+}
+
+void imprimir_informe_doctores(char** parametros, clinica_t* clinica){
+    char* inicio = parametros[0];
+    char* fin = parametros[1];
+    abb_t* abb_doctores = clinica_ver_doctores(clinica);
+    size_t cantidad_doctores = abb_cantidad(abb_doctores);
+    printf(DOCTORES_SISTEMA, cantidad_doctores);
+
+}
