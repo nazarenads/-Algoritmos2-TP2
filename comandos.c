@@ -25,7 +25,7 @@ void pedir_turno_urgente(char** parametros, clinica_t* clinica){
     paciente_t* paciente = hash_obtener(hash_pacientes, parametros[NOMBRE]);
     if(encolar_turno_urg(turno_urgente, paciente)){
         printf(PACIENTE_ENCOLADO, parametros[NOMBRE]);
-        printf(CANT_PACIENTES_ENCOLADOS, ver_cant_espera_urg(turno_urgente), parametros[ESPECIALIDAD]);
+        printf(CANT_PACIENTES_ENCOLADOS, ver_cant_espera(turno_urgente), parametros[ESPECIALIDAD]);
     }
 }
 
@@ -44,7 +44,7 @@ void pedir_turno_regular(char** parametros, clinica_t* clinica){
     paciente_t* paciente = hash_obtener(hash_pacientes, parametros[NOMBRE]);
     if(encolar_turno_reg(turno_regular, paciente)){
         printf(PACIENTE_ENCOLADO, parametros[NOMBRE]);
-        printf(CANT_PACIENTES_ENCOLADOS, ver_cant_espera_reg(turno_regular), parametros[ESPECIALIDAD]);
+        printf(CANT_PACIENTES_ENCOLADOS, ver_cant_espera(turno_regular), parametros[ESPECIALIDAD]);
     }
 }
 
@@ -77,7 +77,7 @@ void atender_siguiente(char** parametros, clinica_t* clinica){
             printf(ENOENT_DESENCOLAR);
         }
         printf(PACIENTE_ATENDIDO, paciente_nombre(paciente_a_atender));
-        printf(CANT_PACIENTES_ENCOLADOS, ver_cant_espera_urg(turno), especialidad);
+        printf(CANT_PACIENTES_ENCOLADOS, ver_cant_espera(turno), especialidad);
         doctor_aumentar_cant_atendidos(doctor);
         return;
     }
@@ -88,7 +88,7 @@ void atender_siguiente(char** parametros, clinica_t* clinica){
         printf(ENOENT_DESENCOLAR);
     }
     printf(PACIENTE_ATENDIDO, paciente_nombre(paciente_a_atender));
-    printf(CANT_PACIENTES_ENCOLADOS, ver_cant_espera_reg(turno), especialidad);
+    printf(CANT_PACIENTES_ENCOLADOS, ver_cant_espera(turno), especialidad);
     doctor_aumentar_cant_atendidos(doctor);
 }
 
