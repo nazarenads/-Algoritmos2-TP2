@@ -30,4 +30,4 @@ void doctor_destruir(doctor_t* doctor);
 // Recibe el vector de campos del csv y crea un doctor_t usando esos campos
 void* crear_doctor_desde_csv(char** campos, void* extra);
 
-void doctor_aumentar_cant_atendidos(doctor_t* doctor)
+void doctor_aumentar_cant_atendidos(doctor_t* doctor);

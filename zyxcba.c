@@ -15,7 +15,7 @@ void procesar_comando(char* comando, char** parametros, clinica_t* clinica) {
 	if (strcmp(comando, COMANDO_PEDIR_TURNO) == 0) {
 		pedir_turno(parametros, clinica);
 	} else if (strcmp(comando, COMANDO_ATENDER) == 0) {
-
+		atender_siguiente(parametros, clinica);
 	} else if (strcmp(comando, COMANDO_INFORME) == 0) {
 
 	} else {
