@@ -64,30 +64,30 @@ void pedir_turno(char** parametros, clinica_t* clinica){
 void atender_siguiente(char* parametros, clinica_t* clinica){
     abb_t* abb_doctores = clinica_ver_doctores(clinica);
     hash_t* hash_turnos = clinica_ver_turnos(clinica);
-    if (!abb_pertenece(abb_doctores, parametros[0])){
-        // Lanzar error ENOENT_DOCTOR
+    if (!abb_pertenece(abb_doctores, parametros[NOMBRE])){
+        printf(ENOENT_DOCTOR, parametros[NOMBRE]);
     }
-    doctor_t* doctor = abb_obtener(abb_doctores, parametros[0]);
+    doctor_t* doctor = abb_obtener(abb_doctores, parametros[NOMBRE]);
     char* especialidad = doctor_ver_especialidad(doctor);
     turno_t* turno = hash_obtener(hash_turnos, especialidad);
     cola_t* cola_urg = ver_cola_turnos_urgentes(turno);
     if (!cola_esta_vacia(cola_urg)){
         paciente_t* paciente_a_atender = desencolar_turno_urg(cola_urg);
         if (!paciente_a_atender) {
-            //Lanzar error genérico
+            printf(ENOENT_DESENCOLAR);
         }
-        // Imprimir salida de PACIENTE_ATENDIDO 
-        // Imprimir CANT_PACIENTES_ENCOLADOS para la especialidad
+        printf(PACIENTE_ATENDIDO, paciente_nombre(paciente_a_atender));
+        printf(CANT_PACIENTES_ENCOLADOS, ver_cant_espera_urg(cola_urg), especialidad);
         doctor_aumentar_cant_atendidos(doctor);
         return;
     }
     heap_t* heap_reg =  ver_heap_turnos_regulares(turno);
     paciente_t* paciente_a_atender = desencolar_turno_reg(heap_reg);
     if (!paciente_a_atender) {
-        // Lanzar error genérico
-        // Imprimir salida de PACIENTE_ATENDIDO 
-        // Imprimir CANT_PACIENTES_ENCOLADOS para la especialidad
+        printf(ENOENT_DESENCOLAR);
     }
+    printf(PACIENTE_ATENDIDO, paciente_nombre(paciente_a_atender));
+    printf(CANT_PACIENTES_ENCOLADOS, ver_cant_espera_urg(cola_urg), especialidad);
     doctor_aumentar_cant_atendidos(doctor);
 }
 

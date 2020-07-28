@@ -22,4 +22,5 @@
 
 #define ENOENT_PARAMS "ERROR: cantidad de parametros invalidos para comando '%s'\n"
 
+#define ENOENT_DESENCOLAR "ERROR: no se pudo obtener el paciente de lista de espera"
 #endif
