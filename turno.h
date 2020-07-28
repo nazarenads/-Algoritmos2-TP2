@@ -21,11 +21,8 @@ typedef struct turno turno_t;
 // Crea un turno
 turno_t* turno_crear();
 
-// Devuelve la cantidad de pacientes que hay en espera para un turno regular
-size_t ver_cant_espera_reg(turno_t* turno);
-
-// Devuelve la cantidad de pacientes que hay en espera para un turno urgente
-size_t ver_cant_espera_urg(turno_t* turno);
+// Devuelve la cantidad de pacientes que hay en espera para un turno
+size_t ver_cant_espera(turno_t* turno);
 
 // Agrega un paciente a la lista de espera de turnos urgentes
 // Pre: el turno fue creado.

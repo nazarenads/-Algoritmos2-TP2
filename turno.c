@@ -43,12 +43,8 @@ turno_t* turno_crear(){
     return turno;
 }
 
-size_t ver_cant_espera_reg(turno_t* turno){
-    return heap_cantidad(turno->regular);
-}
-
-size_t ver_cant_espera_urg(turno_t* turno){
-    return turno->cant_espera_urg;
+size_t ver_cant_espera(turno_t* turno){
+    return turno->cant_espera_urg + heap_cantidad(turno->regular);
 }
 
 bool encolar_turno_urg(turno_t* turno, paciente_t* paciente){
