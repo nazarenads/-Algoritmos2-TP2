@@ -87,7 +87,7 @@ void atender_siguiente(char* parametros, clinica_t* clinica){
         printf(ENOENT_DESENCOLAR);
     }
     printf(PACIENTE_ATENDIDO, paciente_nombre(paciente_a_atender));
-    printf(CANT_PACIENTES_ENCOLADOS, ver_cant_espera_urg(cola_urg), especialidad);
+    printf(CANT_PACIENTES_ENCOLADOS, ver_cant_espera_reg(heap_reg), especialidad);
     doctor_aumentar_cant_atendidos(doctor);
 }
 
