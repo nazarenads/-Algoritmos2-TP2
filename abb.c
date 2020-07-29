@@ -126,6 +126,17 @@ void iterar_iter_interno(nodo_abb_t* nodo, bool visitar(const char *, void *, vo
     iterar_iter_interno(nodo->der, visitar, extra, seguir);
 }
 
+void iterar_iter_interno_rango(nodo_abb_t* nodo, char* inicio, char* fin, bool visitar(const char *, void *, void *), void* extra){
+    if(!nodo) return; // caso base
+    if(strcmp(nodo->clave, inicio) > 0){
+        iterar_iter_interno_rango(nodo->izq, inicio, fin, visitar, extra);
+    }
+    visitar(nodo->clave, nodo->dato, extra);
+    if(strcmp(nodo->clave, fin) < 0){
+        iterar_iter_interno_rango(nodo->der, inicio, fin, visitar, extra);
+    }
+}
+
 bool es_hoja(nodo_abb_t* nodo){
     return !nodo->izq && !nodo->der;
 }
@@ -287,6 +298,12 @@ void abb_destruir(abb_t *arbol){
 /* *****************************************************************
  *                 PRIMITIVA DEL ITER INTERNO
  * *****************************************************************/
+
+
+void abb_in_order_por_rango(abb_t* arbol, char* inicio, char* fin, bool visitar(const char*, void*, void*), void* extra){
+    iterar_iter_interno_rango(arbol->raiz, inicio, fin, visitar, extra);
+}
+
 
 void abb_in_order(abb_t *arbol, bool visitar(const char *, void *, void *), void *extra){
     bool seguir = true;

@@ -76,3 +76,5 @@ void abb_iter_in_destruir(abb_iter_t* iter);
 
 void abb_in_order(abb_t *arbol, bool visitar(const char *, void *, void *), void *extra);
 
+
+void abb_in_order_por_rango(abb_t* arbol, char* inicio, char* fin, bool visitar(const char*, void*, void*), void* extra);
