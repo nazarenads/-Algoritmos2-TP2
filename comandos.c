@@ -95,8 +95,7 @@ void atender_siguiente(char** parametros, clinica_t* clinica){
 /* INFORME DOCTORES */
 
 void imprimir_doctor(const char* nombre, doctor_t* doctor, size_t numero){
-    printf("%zu: %s, especialidad %s, %zu paciente(s) atendido(s)",
-    numero, nombre, doctor_ver_especialidad(doctor), doctor_cant_atendidos(doctor));
+    printf(INFORME_DOCTOR, numero, nombre, doctor_ver_especialidad(doctor), doctor_cant_atendidos(doctor));
     numero++;
 }
 
