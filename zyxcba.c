@@ -10,16 +10,37 @@
 #define COMANDO_PEDIR_TURNO "PEDIR_TURNO"
 #define COMANDO_ATENDER "ATENDER_SIGUIENTE"
 #define COMANDO_INFORME "INFORME"
+#define CANT_PARAMETROS_PEDIR_TURNO 3
+#define CANT_PARAMETROS_ATENDER 1
+#define CANT_PARAMETROS_INFORME 2
+
+bool validar_cantidad_de_parametros(char** parametros, size_t cant_esperada){
+	if (!parametros) return false;
+	size_t contador = 0;
+	while(parametros[contador]){
+		contador++;
+	}
+	return contador == cant_esperada;
+}
 
 void procesar_comando(char* comando, char** parametros, clinica_t* clinica) {
 	if (strcmp(comando, COMANDO_PEDIR_TURNO) == 0) {
+		if (!validar_cantidad_de_parametros(parametros, CANT_PARAMETROS_PEDIR_TURNO)) {
+			printf(ENOENT_PARAMS, comando);
+		}
 		pedir_turno(parametros, clinica);
 	} else if (strcmp(comando, COMANDO_ATENDER) == 0) {
+		if (!validar_cantidad_de_parametros(parametros, CANT_PARAMETROS_ATENDER)) {
+			printf(ENOENT_PARAMS, comando);
+		}
 		atender_siguiente(parametros, clinica);
 	} else if (strcmp(comando, COMANDO_INFORME) == 0) {
-
+		if (!validar_cantidad_de_parametros(parametros, CANT_PARAMETROS_INFORME)) {
+			printf(ENOENT_PARAMS, comando);
+		}
+		imprimir_informe_doctores(parametros, clinica);
 	} else {
-
+		printf(ENOENT_CMD, comando);
 	}
 }
 

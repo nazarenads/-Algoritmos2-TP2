@@ -7,3 +7,5 @@
 void pedir_turno(char** parametros, clinica_t* clinica);
 
 void atender_siguiente(char** parametros, clinica_t* clinica);
+
+void imprimir_informe_doctores(char** parametros, clinica_t* clinica);
