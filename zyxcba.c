@@ -27,20 +27,24 @@ void procesar_comando(char* comando, char** parametros, clinica_t* clinica) {
 	if (strcmp(comando, COMANDO_PEDIR_TURNO) == 0) {
 		if (!validar_cantidad_de_parametros(parametros, CANT_PARAMETROS_PEDIR_TURNO)) {
 			printf(ENOENT_PARAMS, comando);
+			return;
 		}
 		pedir_turno(parametros, clinica);
 	} else if (strcmp(comando, COMANDO_ATENDER) == 0) {
 		if (!validar_cantidad_de_parametros(parametros, CANT_PARAMETROS_ATENDER)) {
 			printf(ENOENT_PARAMS, comando);
+			return;
 		}
 		atender_siguiente(parametros, clinica);
 	} else if (strcmp(comando, COMANDO_INFORME) == 0) {
 		if (!validar_cantidad_de_parametros(parametros, CANT_PARAMETROS_INFORME)) {
 			printf(ENOENT_PARAMS, comando);
+			return;
 		}
 		imprimir_informe_doctores(parametros, clinica);
 	} else {
 		printf(ENOENT_CMD, comando);
+		return;
 	}
 }
 
