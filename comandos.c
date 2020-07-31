@@ -76,6 +76,7 @@ void atender_siguiente(char** parametros, clinica_t* clinica){
         paciente_t* paciente_a_atender = desencolar_turno_urg(turno);
         if (!paciente_a_atender) {
             printf(ENOENT_DESENCOLAR);
+            return;
         }
         printf(PACIENTE_ATENDIDO, paciente_nombre(paciente_a_atender));
         printf(CANT_PACIENTES_ENCOLADOS, ver_cant_espera(turno), especialidad);
@@ -87,6 +88,7 @@ void atender_siguiente(char** parametros, clinica_t* clinica){
     paciente_t* paciente_a_atender = desencolar_turno_reg(turno);
     if (!paciente_a_atender) {
         printf(ENOENT_DESENCOLAR);
+        return;
     }
     printf(PACIENTE_ATENDIDO, paciente_nombre(paciente_a_atender));
     printf(CANT_PACIENTES_ENCOLADOS, ver_cant_espera(turno), especialidad);
