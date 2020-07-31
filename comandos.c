@@ -66,6 +66,7 @@ void atender_siguiente(char** parametros, clinica_t* clinica){
     hash_t* hash_turnos = clinica_ver_turnos(clinica);
     if (!abb_pertenece(abb_doctores, parametros[NOMBRE])){
         printf(ENOENT_DOCTOR, parametros[NOMBRE]);
+        return;
     }
     doctor_t* doctor = abb_obtener(abb_doctores, parametros[NOMBRE]);
     char* especialidad = doctor_ver_especialidad(doctor);
