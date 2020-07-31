@@ -28,6 +28,9 @@ lista_t* csv_crear_estructura(const char* ruta_csv, void* (*creador) (char**, vo
 	size_t c = 0;
 	while (getline(&linea, &c, archivo) > 0) {
 		eliminar_fin_linea(linea);
+		if(strcmp(linea,"") == 0) {
+			return lista; 
+		}
 		char** campos = split(linea, SEPARADOR);
 		lista_insertar_ultimo(lista, creador(campos, extra));
 		free_strv(campos);

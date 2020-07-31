@@ -84,7 +84,10 @@ void atender_siguiente(char** parametros, clinica_t* clinica){
         return;
     }
     heap_t* heap_reg =  ver_heap_turnos_regulares(turno);
-    if (heap_esta_vacio(heap_reg)) printf(SIN_PACIENTES);
+    if (heap_esta_vacio(heap_reg)) {
+        printf(SIN_PACIENTES);
+        return;
+    }
     paciente_t* paciente_a_atender = desencolar_turno_reg(turno);
     if (!paciente_a_atender) {
         printf(ENOENT_DESENCOLAR);
@@ -114,6 +117,6 @@ void imprimir_informe_doctores(char** parametros, clinica_t* clinica){
     abb_t* abb_doctores = clinica_ver_doctores(clinica);
     size_t cantidad_doctores = abb_cantidad(abb_doctores);
     printf(DOCTORES_SISTEMA, cantidad_doctores);
-    size_t numero = 0;
+    size_t numero = 1;
     abb_in_order_por_rango(abb_doctores, inicio, fin, imprimir, &numero);
 }

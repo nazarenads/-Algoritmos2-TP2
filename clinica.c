@@ -1,5 +1,6 @@
 #include "csv.h"
 #include "clinica.h"
+#include <stdio.h>
 #include <string.h>
 
 // Definicion de la estructura
@@ -76,9 +77,10 @@ bool guardar_paciente_en_hash(hash_t* hash, paciente_t* paciente){
 hash_t* paciente_hash_crear(lista_t* lista_pacientes){
     hash_t* hash_pacientes = hash_crear(destruir_dato_paciente);
     if (!hash_pacientes) return NULL;
+    if (lista_esta_vacia(lista_pacientes)) return hash_pacientes;
     lista_iter_t* iter = lista_iter_crear(lista_pacientes);
     while (!lista_iter_al_final(iter)){
-        paciente_t* paciente = (paciente_t*)lista_iter_ver_actual(iter);
+        paciente_t* paciente = lista_iter_ver_actual(iter);
         bool guardado = guardar_paciente_en_hash(hash_pacientes, paciente);
         if (!guardado) return NULL;
         lista_iter_avanzar(iter);
@@ -89,7 +91,7 @@ hash_t* paciente_hash_crear(lista_t* lista_pacientes){
 
 // Primitivas
 
-clinica_t* clinica_crear(char* csv_pacientes, char* csv_doctores){
+clinica_t* clinica_crear(char* csv_doctores, char* csv_pacientes){
     clinica_t* clinica = malloc(sizeof(clinica_t));
     if (!clinica) return NULL;
     lista_t* lista_pacientes = csv_crear_estructura(csv_pacientes, crear_paciente_desde_csv, NULL);
