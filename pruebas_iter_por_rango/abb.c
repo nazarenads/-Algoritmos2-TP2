@@ -126,15 +126,14 @@ void iterar_iter_interno(nodo_abb_t* nodo, bool visitar(const char *, void *, vo
     iterar_iter_interno(nodo->der, visitar, extra, seguir);
 }
 
-void iterar_iter_interno_rango(nodo_abb_t* nodo, char* inicio, char* fin, bool visitar(const char *, void *, void *), void* extra){
+void iterar_iter_interno_rango(nodo_abb_t* nodo, char* inicio, char* fin, bool visitar(const char *, void *, void *), void* extra, abb_comparar_clave_t cmp){
     if(!nodo) return; // caso base
-    if(strcmp(nodo->clave, inicio) > 0){
-        iterar_iter_interno_rango(nodo->izq, inicio, fin, visitar, extra);
+    if(cmp(nodo->clave, inicio) > 0){
+        iterar_iter_interno_rango(nodo->izq, inicio, fin, visitar, extra, cmp);
     }
     visitar(nodo->clave, nodo->dato, extra);
-    printf("clave del nodo: %s\n", nodo->clave);
-    if(strcmp(nodo->clave, fin) < 0){
-        iterar_iter_interno_rango(nodo->der, inicio, fin, visitar, extra);
+    if(cmp(nodo->clave, fin) < 0){
+        iterar_iter_interno_rango(nodo->der, inicio, fin, visitar, extra, cmp);
     }
 }
 
@@ -302,7 +301,7 @@ void abb_destruir(abb_t *arbol){
 
 
 void abb_in_order_por_rango(abb_t* arbol, char* inicio, char* fin, bool visitar(const char*, void*, void*), void* extra){
-    iterar_iter_interno_rango(arbol->raiz, inicio, fin, visitar, extra);
+    iterar_iter_interno_rango(arbol->raiz, inicio, fin, visitar, extra, arbol->comparar_clave);
 }
 
 
