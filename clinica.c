@@ -129,8 +129,8 @@ clinica_t* clinica_crear(char* csv_doctores, char* csv_pacientes){
         abb_destruir(clinica->abb_doctores);
         return NULL;
     }
-    lista_destruir(lista_pacientes, destruir_dato_paciente);
-    lista_destruir(lista_doctores, destruir_dato_doc);
+    lista_destruir(lista_pacientes, NULL);
+    lista_destruir(lista_doctores, NULL);
     return clinica;
 }
 

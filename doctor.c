@@ -44,7 +44,7 @@ void doctor_aumentar_cant_atendidos(doctor_t* doctor){
 }
 
 void doctor_destruir(doctor_t* doctor){
-    //free(doctor->nombre);
-    //free(doctor->especialidad);
+    free(doctor->nombre);
+    free(doctor->especialidad);
     free(doctor);
 }

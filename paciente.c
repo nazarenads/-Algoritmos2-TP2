@@ -45,7 +45,7 @@ size_t paciente_antiguedad(paciente_t* paciente){
 }
 
 void paciente_destruir(paciente_t* paciente){
-    //free(paciente->nombre);
+    free(paciente->nombre);
     free(paciente);
 }
 
