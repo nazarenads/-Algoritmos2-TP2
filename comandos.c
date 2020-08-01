@@ -107,7 +107,7 @@ void imprimir_doctor(const char* nombre, doctor_t* doctor, size_t numero){
 
 bool imprimir(const char* dato, void* valor, void* extra){
     imprimir_doctor(dato, valor, *(size_t*)extra);
-    return false;
+    return true;
 }
 
 
@@ -115,8 +115,8 @@ void imprimir_informe_doctores(char** parametros, clinica_t* clinica){
     char* inicio = parametros[0];
     char* fin = parametros[1];
     abb_t* abb_doctores = clinica_ver_doctores(clinica);
-    size_t cantidad_doctores = abb_cantidad(abb_doctores);
-    printf(DOCTORES_SISTEMA, cantidad_doctores);
     size_t numero = 1;
     abb_in_order_por_rango(abb_doctores, inicio, fin, imprimir, &numero);
+    size_t cantidad_doctores = numero;
+    printf(DOCTORES_SISTEMA, cantidad_doctores);
 }
