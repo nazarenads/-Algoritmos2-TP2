@@ -131,7 +131,8 @@ void iterar_iter_interno_rango(nodo_abb_t* nodo, char* inicio, char* fin, bool v
     if(cmp(nodo->clave, inicio) > 0){
         iterar_iter_interno_rango(nodo->izq, inicio, fin, visitar, extra, cmp);
     }
-    visitar(nodo->clave, nodo->dato, extra);
+    if(cmp(nodo->clave, inicio) >= 0 && cmp(nodo->clave, fin) <= 0)
+        visitar(nodo->clave, nodo->dato, extra);
     if(cmp(nodo->clave, fin) < 0){
         iterar_iter_interno_rango(nodo->der, inicio, fin, visitar, extra, cmp);
     }
