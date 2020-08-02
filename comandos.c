@@ -101,22 +101,33 @@ void atender_siguiente(char** parametros, clinica_t* clinica){
 /* INFORME DOCTORES */
 
 void imprimir_doctor(const char* nombre, doctor_t* doctor, size_t numero){
-    printf(INFORME_DOCTOR, numero, nombre, doctor_ver_especialidad(doctor), doctor_cant_atendidos(doctor));
     numero++;
+    printf(INFORME_DOCTOR, numero, nombre, doctor_ver_especialidad(doctor), doctor_cant_atendidos(doctor));
 }
 
 bool imprimir(const char* dato, void* valor, void* extra){
     imprimir_doctor(dato, valor, *(size_t*)extra);
-    return true;
+    return false;
 }
 
+bool contar_docs(const char* dato, void* valor, void* extra){
+    *(size_t*)extra += 1;
+    return true;
+}
 
 void imprimir_informe_doctores(char** parametros, clinica_t* clinica){
     char* inicio = parametros[0];
     char* fin = parametros[1];
+    if(!inicio || !fin){
+        printf(ENOENT_PARAMS, "INFORME");
+        return;
+    }
+    if(strcmp(inicio, "") == 0) inicio = "A";
+    if(strcmp(fin, "") == 0) fin = "Z";
     abb_t* abb_doctores = clinica_ver_doctores(clinica);
-    size_t numero = 1;
-    abb_in_order_por_rango(abb_doctores, inicio, fin, imprimir, &numero);
-    size_t cantidad_doctores = numero;
+    size_t cantidad_doctores = 0;
+    abb_in_order_por_rango(abb_doctores, inicio, fin, contar_docs, &cantidad_doctores);
     printf(DOCTORES_SISTEMA, cantidad_doctores);
+    size_t numero = 0;
+    abb_in_order_por_rango(abb_doctores, inicio, fin, imprimir, &numero);
 }
