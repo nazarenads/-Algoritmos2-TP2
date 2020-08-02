@@ -31,8 +31,6 @@ paciente_t* paciente_crear(char* nombre, int anio_inscripcion){
 }
 
 void* crear_paciente_desde_csv(char** campos, void* extra){
-    printf("NOMBRE PACIENTE: %s\n", campos[0]);
-    printf("ANIO INSCRIPCION: %s\n", campos[1]);
     return paciente_crear(campos[0], atoi(campos[1]));
 }
 
