@@ -69,8 +69,7 @@ abb_t* doctor_abb_crear(lista_t* lista_doctores){
 
 bool guardar_paciente_en_hash(hash_t* hash, paciente_t* paciente){
     char* nombre = paciente_nombre(paciente);
-    size_t antiguedad = paciente_antiguedad(paciente);
-    return hash_guardar(hash, nombre, &antiguedad);
+    return hash_guardar(hash, nombre, paciente);
 }
 
 
@@ -121,7 +120,7 @@ clinica_t* clinica_crear(char* csv_doctores, char* csv_pacientes){
         return NULL;
     }
     clinica->hash_turnos = turno_hash_crear(lista_doctores);
-    if (!clinica->hash_pacientes) {
+    if (!clinica->hash_turnos) {
         free(clinica);
         lista_destruir(lista_pacientes, destruir_dato_paciente);
         lista_destruir(lista_doctores, destruir_dato_doc);
