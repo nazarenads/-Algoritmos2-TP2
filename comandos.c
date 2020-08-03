@@ -94,7 +94,6 @@ void atender_siguiente(char** parametros, clinica_t* clinica){
         return;
     }
     printf(PACIENTE_ATENDIDO, paciente_nombre(paciente_a_atender));
-    printf("ANTIGUEDAD DEL PACIENTE ATENDIDO: %ld\n", paciente_antiguedad(paciente_a_atender));
     printf(CANT_PACIENTES_ENCOLADOS, ver_cant_espera(turno), especialidad);
     doctor_aumentar_cant_atendidos(doctor);
 }

@@ -3,6 +3,7 @@
 #include "doctor.h"
 #include "turno.h"
 #include <string.h>
+#include <stdio.h>
 
 // Definicion de la estructura
 
@@ -16,7 +17,7 @@ struct turno{
 
 int _cmp_antiguedad_paciente(paciente_t* a, paciente_t* b){
     if(paciente_antiguedad(a) == paciente_antiguedad(b)) return 0;
-    return paciente_antiguedad(a) > paciente_antiguedad(a) ? 1 : -1;
+    return paciente_antiguedad(a) > paciente_antiguedad(b) ? 1 : -1;
 }
 
 int cmp_antiguedad_paciente(const void* a, const void* b){
