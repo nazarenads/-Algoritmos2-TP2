@@ -3,10 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "strutil.h"
-#include "mensajes.h"
 #include "comandos.h"
-#include "clinica.h"
-
 #define COMANDO_PEDIR_TURNO "PEDIR_TURNO"
 #define COMANDO_ATENDER "ATENDER_SIGUIENTE"
 #define COMANDO_INFORME "INFORME"
