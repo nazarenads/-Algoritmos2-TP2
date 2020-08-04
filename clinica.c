@@ -43,7 +43,6 @@ hash_t* turno_hash_crear(lista_t* lista_doctores){
         lista_iter_avanzar(iter);
     }
     lista_iter_destruir(iter);
-    // no destruyo la lista de doctores porque se va a usar para el abb también
     return hash_turnos;
 }
 
@@ -63,7 +62,6 @@ abb_t* doctor_abb_crear(lista_t* lista_doctores){
         lista_iter_avanzar(iter);
     }
     lista_iter_destruir(iter);
-    // no destruyo la lista de doctores porque se va a usar para los turnos también
     return abb_doctores;
 }
 
