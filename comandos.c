@@ -101,12 +101,11 @@ void atender_siguiente(char** parametros, clinica_t* clinica){
 /* INFORME DOCTORES */
 
 void imprimir_doctor(const char* nombre, doctor_t* doctor, size_t numero){
-    numero++;
     printf(INFORME_DOCTOR, numero, nombre, doctor_ver_especialidad(doctor), doctor_cant_atendidos(doctor));
 }
 
 bool imprimir(const char* dato, void* valor, void* extra){
-    imprimir_doctor(dato, valor, *(size_t*)extra);
+    imprimir_doctor(dato, valor, *(size_t*)extra += 1);
     return false;
 }
 
