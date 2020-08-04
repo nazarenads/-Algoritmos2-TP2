@@ -1,6 +1,3 @@
-#include "turno.h"
-#include "paciente.h"
-#include "doctor.h"
 #include "clinica.h"
 #include "mensajes.h"
 

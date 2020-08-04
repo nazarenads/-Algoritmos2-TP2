@@ -1,4 +1,3 @@
-#include "paciente.h"
 #include "doctor.h"
 #include "turno.h"
 
