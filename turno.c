@@ -80,8 +80,6 @@ heap_t* ver_heap_turnos_regulares(turno_t* turno){
 }
 
 void turno_destruir(turno_t* turno){
-    // No les paso funcion de destruccion porque asumo que solo vamos a destruir
-    // esta estructura cuando esten vacias ambas colas.
     cola_destruir(turno->urgente, NULL);
     heap_destruir(turno->regular, NULL);
     free(turno);
